@@ -89,6 +89,7 @@ public class BaseDao<T extends BaseEntity> implements IBaseDao<T> {
 		}
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public T getObjectById(String id) {
 		SessionFactory sessionFactory = AnnotationHibernateUtil.getSessionFactory();
