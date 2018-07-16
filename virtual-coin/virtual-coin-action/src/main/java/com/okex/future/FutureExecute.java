@@ -37,7 +37,7 @@ public class FutureExecute {
 		
 		for(int index=0;index<symbolList.size();index++) {
 			Timer mTimer = new Timer();
-			OrderRemind orderRemind = new OrderRemind(symbolList.get(index),"5min","this_week");
+			OrderRemind orderRemind = new OrderRemind(symbolList.get(index),"15min","this_week");
 			mTimer.scheduleAtFixedRate(orderRemind, 1000, 5000);
 		}
 	}
