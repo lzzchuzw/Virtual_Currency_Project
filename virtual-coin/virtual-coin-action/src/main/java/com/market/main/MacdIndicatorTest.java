@@ -11,6 +11,7 @@ import com.market.model.KLine;
 import com.utils.date.DateUtils;
 import com.utils.json.JacksonUtils;
 import com.utils.poi.PoiUtils;
+import com.utils.tradingIndicator.BollIndicator;
 import com.utils.tradingIndicator.KDJIndicator;
 import com.utils.tradingIndicator.MacdIndicator;
 import com.utils.tradingIndicator.MovingAverageIndicator;
@@ -27,10 +28,24 @@ public class MacdIndicatorTest {
 		//calculateMACD("D:/stock_kline.xls");
 		//calculateMACD2("D:/stock_kline.xls");
 		//StrategyCalculate();
-		List<KLine> klineList = generateKLineList();
-		calculateRSI(klineList, 6, 12, 24, 2);
+		List<KLine> klineList = generateKLineList(1,0);
+		//calculateRSI(klineList, 6, 12, 24, 2);
+		calculateBOLL(klineList, 20, 2.0, 2);
+		//test();
 	}
-
+    
+	public static void test() {
+		int index = 0;
+		int count = 10;
+		while(index++<count) {
+			System.out.println("index = "+index);
+		}
+		/*for(;index<count;index++) {
+			System.out.println("index = "+index);
+		}*/
+		
+	}
+	
 	public static void calculateMACD(String excelFile) {
 		List<Double> closedPriceList = new ArrayList<Double>();
 		List<String> mList = PoiUtils.getExcelColumnListValues(excelFile, 0, 4, 1, 2);
@@ -97,7 +112,7 @@ public class MacdIndicatorTest {
 		}*/
 	}
 	public static void StrategyCalculate() {
-		List<KLine> klineList = generateKLineList();
+		List<KLine> klineList = generateKLineList(1,0);
 		//计算均线
 		List<Map<String,String>> MA30ListMap = calculateMA(klineList,10,2);
 		//判断closePrice在MA30线以下的点;
@@ -173,9 +188,9 @@ public class MacdIndicatorTest {
 	    	 System.out.println("inde = " + index +"---time = "+ret1.get(index));
 	     }
 	}
-	public static List<KLine> generateKLineList() {
+	public static List<KLine> generateKLineList(int startColumn,int lastColumn) {
 		//List<Map<String,String>> mList = PoiUtils.getExcelColumnMapValues("D:/stock_kline.xls", 0, 1,0);
-		List<Map<String,String>> mList = PoiUtils.getExcelColumnMapValues("D:/SNYG.xls", 0, 1,0);
+		List<Map<String,String>> mList = PoiUtils.getExcelColumnMapValues("D:/SNYG.xls", 0, startColumn,lastColumn);
 		List<KLine> klineList = new ArrayList<KLine>();
 		for(int index=0;index<mList.size();index++) {
 			KLine kline = new KLine();
@@ -231,6 +246,19 @@ public class MacdIndicatorTest {
 					"---RSI"+ shortPeriod+" = " + map.get("RSI"+shortPeriod) +
 					"---RSI"+ middlePeriod+" = " + map.get("RSI"+middlePeriod) +
 					"---RSI"+ longPeriod+" = " + map.get("RSI"+longPeriod)
+			);
+
+		}
+	}
+	public static void calculateBOLL(List<KLine> klineList, int period, final Double multiple , int decimalWidth) {
+		List<Map<String, String>> rsiList = BollIndicator.calculateBoll(klineList, period, multiple, decimalWidth);
+		int count = rsiList.size();
+		for (int index = 0; index < count; index++) {
+			Map<String, String> map = rsiList.get(index);
+			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ 
+					"---MID = " + map.get("MID") +
+					"---UPPER = " + map.get("UPPER") +
+					"---LOWER = " + map.get("LOWER") 
 			);
 
 		}

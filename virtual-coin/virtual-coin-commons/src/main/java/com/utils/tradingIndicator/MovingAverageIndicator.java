@@ -37,7 +37,17 @@ public class MovingAverageIndicator {
 		}
 		return periodMAList;
 	}
-	
+	/**
+	 * 
+	* @Title: calculateMAListMap
+	* @Description: 计算N日均线  从第N日开始给出数值
+	* @param klineList
+	* @param period
+	* @param decimalWidth
+	* @return List<Map<String,String>>
+	* @author leisure
+	* @date 2018年7月16日上午11:06:27
+	 */
 	public static List<Map<String, String>> calculateMAListMap(List<KLine> klineList,final int period,final int decimalWidth) {
 		if(null==klineList || klineList.size()<period) {
 			return null;
