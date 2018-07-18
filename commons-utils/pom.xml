@@ -23,6 +23,7 @@
         <poi.version>3.17</poi.version>
         <jackson.version>2.9.6</jackson.version>
         <commons.logging.version>1.2</commons.logging.version>
+        <commons.io.version>2.6</commons.io.version>
         <jsoup.version>1.11.3</jsoup.version>
         <jedis.version>2.9.0</jedis.version>
         <commons.io.version>2.6</commons.io.version>
@@ -66,6 +67,11 @@
             <version>${commons.logging.version}</version>
         </dependency>
         <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
+        <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
             <version>${jackson.version}</version>
@@ -89,6 +95,11 @@
             <groupId>org.apache.httpcomponents</groupId>
             <artifactId>httpclient</artifactId>
             <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
         </dependency>
     </dependencies>
     <build>
