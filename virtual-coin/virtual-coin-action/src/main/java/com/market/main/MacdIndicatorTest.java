@@ -52,14 +52,14 @@ public class MacdIndicatorTest {
 		for (String s : mList) {
 			closedPriceList.add(Double.parseDouble(s));
 		}
-		System.out.println("closedPriceList.size = " + closedPriceList.size());
+//		System.out.println("closedPriceList.size = " + closedPriceList.size());
 		List<HashMap<String, Double>> macdList = MacdIndicator.calculateMACD(closedPriceList);
 		int count = macdList.size();
 		for (int index = 0; index < count; index++) {
 			HashMap<String, Double> map = macdList.get(index);
 
-			System.out.println("inde = " + index + "---MACD = " + map.get("MACD") + "---DIFF = " + map.get("DIFF")
-					+ "---DEA = " + map.get("DEA"));
+//			System.out.println("inde = " + index + "---MACD = " + map.get("MACD") + "---DIFF = " + map.get("DIFF")
+//					+ "---DEA = " + map.get("DEA"));
 
 		}
 	}
@@ -173,19 +173,19 @@ public class MacdIndicatorTest {
 	     MAStrategyTimeList.retainAll(MACDStrategyTimeList);
 	     
 	     //s
-	     System.out.println("MA 和MACD 交集后的点");
+//	     System.out.println("MA 和MACD 交集后的点");
          for(int index=0;index<MAStrategyTimeList.size();index++) {
 	    	 
-	    	 System.out.println("inde = " + index +"---time = "+MAStrategyTimeList.get(index));
+//	    	 System.out.println("inde = " + index +"---time = "+MAStrategyTimeList.get(index));
 	     }
          List<String> ret1 = new ArrayList<String>();
          ret1.addAll(MAStrategyTimeList);
          ret1.retainAll(KDJStrategyTimeList);
 	
-	     System.out.println("------------------------最后的策略点-----------------");
+//	     System.out.println("------------------------最后的策略点-----------------");
 	     for(int index=0;index<ret1.size();index++) {
 	    	 
-	    	 System.out.println("inde = " + index +"---time = "+ret1.get(index));
+//	    	 System.out.println("inde = " + index +"---time = "+ret1.get(index));
 	     }
 	}
 	public static List<KLine> generateKLineList(int startColumn,int lastColumn) {
@@ -208,7 +208,7 @@ public class MacdIndicatorTest {
 		List<Map<String,String>> periodMAListMap = MovingAverageIndicator.calculateMAListMap(klineList, period,decimalWidth);
 		for (int index = 0; index < periodMAListMap.size(); index++) {
 			Map<String, String> map = periodMAListMap.get(index);
-			System.out.println("inde = " + index +"---time = "+map.get("TIME")+"----closePrice = "+map.get("CLOSEPRICE")+"----MA"+period+" = "+map.get("MA"+period));
+//			System.out.println("inde = " + index +"---time = "+map.get("TIME")+"----closePrice = "+map.get("CLOSEPRICE")+"----MA"+period+" = "+map.get("MA"+period));
 		}
 		return periodMAListMap;
 	}
@@ -219,8 +219,8 @@ public class MacdIndicatorTest {
 		for (int index = 0; index < count; index++) {
 			Map<String, String> map = macdList.get(index);
 
-			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ "---MACD = " + map.get("MACD") + "---DIFF = " + map.get("DIFF")
-					+ "---DEA = " + map.get("DEA"));
+//			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ "---MACD = " + map.get("MACD") + "---DIFF = " + map.get("DIFF")
+//					+ "---DEA = " + map.get("DEA"));
 		}
 		return macdList;
 	}
@@ -230,8 +230,8 @@ public class MacdIndicatorTest {
 		int count = kdjList.size();
 		for (int index = 0; index < count; index++) {
 			Map<String, String> map = kdjList.get(index);
-			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ "---RSV = " + map.get("RSV") + "---K = " + map.get("K")
-			+ "---D = " + map.get("D")+"---J = " + map.get("J"));
+//			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ "---RSV = " + map.get("RSV") + "---K = " + map.get("K")
+//			+ "---D = " + map.get("D")+"---J = " + map.get("J"));
 
 		}
 		return kdjList;
@@ -242,11 +242,11 @@ public class MacdIndicatorTest {
 		int count = rsiList.size();
 		for (int index = 0; index < count; index++) {
 			Map<String, String> map = rsiList.get(index);
-			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ 
-					"---RSI"+ shortPeriod+" = " + map.get("RSI"+shortPeriod) +
-					"---RSI"+ middlePeriod+" = " + map.get("RSI"+middlePeriod) +
-					"---RSI"+ longPeriod+" = " + map.get("RSI"+longPeriod)
-			);
+//			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ 
+//					"---RSI"+ shortPeriod+" = " + map.get("RSI"+shortPeriod) +
+//					"---RSI"+ middlePeriod+" = " + map.get("RSI"+middlePeriod) +
+//					"---RSI"+ longPeriod+" = " + map.get("RSI"+longPeriod)
+//			);
 
 		}
 	}
@@ -255,11 +255,11 @@ public class MacdIndicatorTest {
 		int count = rsiList.size();
 		for (int index = 0; index < count; index++) {
 			Map<String, String> map = rsiList.get(index);
-			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ 
-					"---MID = " + map.get("MID") +
-					"---UPPER = " + map.get("UPPER") +
-					"---LOWER = " + map.get("LOWER") 
-			);
+//			System.out.println("inde = " + index +"---time = "+map.get("TIME")+ 
+//					"---MID = " + map.get("MID") +
+//					"---UPPER = " + map.get("UPPER") +
+//					"---LOWER = " + map.get("LOWER") 
+//			);
 
 		}
 	}

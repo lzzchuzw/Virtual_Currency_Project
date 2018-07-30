@@ -88,11 +88,11 @@ public class FutureClient {
 		ret1.addAll(MAStrategyTimeList);
 		ret1.retainAll(KDJStrategyTimeList);
 
-		System.out.println("------------------------最后的策略点-----------------");
-		for (int index = 0; index < ret1.size(); index++) {
-
-			System.out.println("inde = " + index + "---time = " + ret1.get(index));
-		}
+//		System.out.println("------------------------最后的策略点-----------------");
+//		for (int index = 0; index < ret1.size(); index++) {
+//
+//			System.out.println("inde = " + index + "---time = " + ret1.get(index));
+//		}
 
 		/*
 		 * for (int index = 0; index < klineList.size(); index++) { KLine kline =

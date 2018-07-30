@@ -2,7 +2,6 @@ package com.okex.future;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 
 public class FutureExecute {
@@ -10,10 +9,6 @@ public class FutureExecute {
 	public static void main(String[] args) {
 		//testMonitor();
 		futureMonitor();	
-	}
-	
-	public static void appendWriteToFile() {
-		
 	}
 	
 	public static void testMonitor() {
@@ -37,7 +32,7 @@ public class FutureExecute {
 		
 		for(int index=0;index<symbolList.size();index++) {
 			Timer mTimer = new Timer();
-			OrderRemind orderRemind = new OrderRemind(symbolList.get(index),"15min","this_week");
+			OrderRemind orderRemind = new OrderRemind(symbolList.get(index),"1min","this_week");
 			mTimer.scheduleAtFixedRate(orderRemind, 1000, 5000);
 		}
 	}

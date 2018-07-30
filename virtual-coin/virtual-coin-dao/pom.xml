@@ -14,6 +14,8 @@
 			<groupId>com.manyiaby</groupId>
 			<artifactId>virtual-coin-commons</artifactId>
 			<version>${project.version}</version>
+			<!-- <groupId>com.manyiaby</groupId> <artifactId>commons.utils</artifactId> 
+				<version>0.0.2</version> -->
 		</dependency>
 	</dependencies>
 </project>

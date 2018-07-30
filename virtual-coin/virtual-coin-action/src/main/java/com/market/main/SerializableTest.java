@@ -25,7 +25,7 @@ import redis.clients.jedis.Jedis;
 
 public class SerializableTest {
 	
-public static final String FILE_PATH = "F:/testFolder/serializable/";
+public static final String FILE_PATH = "D:/testFolder/serializable/";
 	
 	public static void main(String[] args) {
 		//saveAndReadObjectFromJedis("Okex");

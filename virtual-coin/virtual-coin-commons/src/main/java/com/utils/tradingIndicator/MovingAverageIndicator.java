@@ -61,11 +61,11 @@ public class MovingAverageIndicator {
 		//计算index=0到index=peroid-2的数据之和
 		do {
 			sum += klineList.get(index).getClosePrice();
-			System.out.println("index = "+index+"---sum = "+sum);
+			//System.out.println("index = "+index+"---sum = "+sum);
 			index ++;			
 		}while(index<period-1);
 		
-		System.out.println("初始化的index = "+index+"----sum = "+sum);
+		//System.out.println("初始化的index = "+index+"----sum = "+sum);
 		
 		for(;index<klineList.size();index++) {
 			sum += klineList.get(index).getClosePrice();

@@ -1,9 +1,7 @@
 package com.utils.request;
 
 
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.net.ProxySelector;
@@ -14,12 +12,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.Header;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpHost;
-import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.CookieStore;
@@ -27,12 +23,9 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
-
 import org.apache.http.client.methods.HttpUriRequest;
-
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.config.ConnectionConfig;
-import org.apache.http.conn.ConnectionKeepAliveStrategy;
 import org.apache.http.cookie.Cookie;
 import org.apache.http.impl.client.BasicCookieStore;
 import org.apache.http.impl.client.CloseableHttpClient;
@@ -40,11 +33,11 @@ import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
 import org.apache.http.impl.conn.SystemDefaultRoutePlanner;
-
 import org.apache.http.message.BasicHeader;
 import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.protocol.HttpContext;
 import org.apache.http.util.EntityUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 
@@ -55,7 +48,7 @@ import org.apache.http.util.EntityUtils;
  * @date 2018年1月19日
  */
 public class HttpClientRequestHandler {
-	public static final String FILE_PATH = "f:/testFolder/simulateLogin/xiaomi/";
+	public static final String FILE_PATH = "D:/testFolder/simulateLogin/xiaomi/";
 	public static final boolean DEBUG = true;
 	
 	private HttpClient httpClient;
@@ -63,7 +56,7 @@ public class HttpClientRequestHandler {
 	private HttpUriRequest requestMethod;
 	private Map<String, ResponseRet> resonseRetMap;
 	private Map<String, Map<String, Object>> parseMap;
-	private Log log = LogFactory.getLog(this.getClass());
+	private Logger log = LoggerFactory.getLogger(this.getClass());
 	
 
 	
@@ -78,11 +71,11 @@ public class HttpClientRequestHandler {
 			httpClient = this.setProxyStrategy(hcb)
 			                 .setProxy(proxyHost)
 			                 .build();
-			System.out.println("初始化HttpClientRequestHandler-----代理");
+			//System.out.println("初始化HttpClientRequestHandler-----代理");
 		} else {
 			httpClient = hcb.build();
 		}
-		System.out.println("初始化HttpClientRequestHandler");
+		//System.out.println("初始化HttpClientRequestHandler");
 		// context
 		HttpClientContext context = generateHttpClientContext();
 		this.httpClient = httpClient;
@@ -98,11 +91,11 @@ public class HttpClientRequestHandler {
 		CloseableHttpClient httpClient = null;
 		if (RequestConstant.IS_PROXY) {
 			httpClient = this.setProxyStrategy(hcb).build();
-			System.out.println("初始化HttpClientRequestHandler-----代理");
+			//System.out.println("初始化HttpClientRequestHandler-----代理");
 		} else {
 			httpClient = hcb.build();
 		}
-		System.out.println("初始化HttpClientRequestHandler");
+		//System.out.println("初始化HttpClientRequestHandler");
 		// context
 		HttpClientContext context = generateHttpClientContext();
 		this.httpClient = httpClient;
@@ -234,10 +227,10 @@ public class HttpClientRequestHandler {
 			pairList.add(new BasicNameValuePair(key, value));
 		}
 		/* 遍历pairList */
-		System.out.println("----------------------------遍历pairList-----------------------------------");
+		//System.out.println("----------------------------遍历pairList-----------------------------------");
 		for (int i = 0; i < pairList.size(); i++) {
 			BasicNameValuePair bnvp = pairList.get(i);
-			System.out.println("i = " + i + "----bnvp.name = " + bnvp.getName() + "---bnvp.value = " + bnvp.getValue());
+			//System.out.println("i = " + i + "----bnvp.name = " + bnvp.getName() + "---bnvp.value = " + bnvp.getValue());
 		}
 		return pairList;
 	}
@@ -267,7 +260,7 @@ public class HttpClientRequestHandler {
 		System.out.println("----------------------------遍历pairList-----------------------------------");
 		for (int i = 0; i < pairList.size(); i++) {
 			BasicNameValuePair bnvp = pairList.get(i);
-			System.out.println("i = " + i + "----bnvp.name = " + bnvp.getName() + "---bnvp.value = " + bnvp.getValue());
+			//System.out.println("i = " + i + "----bnvp.name = " + bnvp.getName() + "---bnvp.value = " + bnvp.getValue());
 		}
 		return pairList;
 	}
@@ -296,7 +289,7 @@ public class HttpClientRequestHandler {
 			response = (CloseableHttpResponse) httpClient.execute(requestMethod, context);
 			int responseCode = outputResponseHeaderAndCookies(requestHandler, response, responseRet);
 			if(200!=responseCode) {
-				System.out.println("get responseCode = "+responseCode);
+				//System.out.println("get responseCode = "+responseCode);
 				return responseRet;
 			}
 			// 请求返回消息体
@@ -306,7 +299,7 @@ public class HttpClientRequestHandler {
 				// 存储到硬盘
 				// 将entity保持到内存中rushToPurchasePage
 				byte[] responseBody = EntityUtils.toByteArray(entity);
-				String filePath = "F:\\testFolder\\virtual_coin\\binance\\market_depth\\";
+				String filePath = "D:\\testFolder\\virtual_coin\\binance\\market_depth\\";
 				String fileName = fileNamePrefix + "_" + System.currentTimeMillis();
 				// 默认设置
 				responseRet.setRetType(ResponseType.JSON);
@@ -315,13 +308,14 @@ public class HttpClientRequestHandler {
 				// 返回文本类型
 				fileName += ".txt";
 				responseRet.setRetContent(responseBody);
-				System.out.println("fileName = "+filePath + fileName);
+				//System.out.println("fileName = "+filePath + fileName);
 				File file = new File(filePath + fileName);
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+				//BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 				EntityUtils.consume(entity);
-				bos.write(responseBody);
-				bos.flush();
-				bos.close();
+				FileUtils.writeByteArrayToFile(file, responseBody, true);
+				//bos.write(responseBody);
+				//bos.flush();
+				//bos.close();
 				requestHandler.getResonseRetMap().put(fileNamePrefix, responseRet);
 			} else {
 				System.out.println("entity is null");
@@ -370,7 +364,7 @@ public class HttpClientRequestHandler {
 			response = (CloseableHttpResponse) httpClient.execute(requestMethod, context);
 			int responseCode = outputResponseHeaderAndCookies(requestHandler, response, responseRet);
 			if(200!=responseCode) {
-				System.out.println("get responseCode = "+responseCode);
+				//System.out.println("get responseCode = "+responseCode);
 				return responseRet;
 			}
 			// 请求返回消息体
@@ -381,7 +375,7 @@ public class HttpClientRequestHandler {
 				// 将entity保持到内存中rushToPurchasePage
 				byte[] responseBody = EntityUtils.toByteArray(entity);
 				if(null==fileDirPath) {
-				   fileDirPath = "F:\\testFolder\\virtual_coin\\binance\\market_depth\\";
+				   fileDirPath = "D:\\testFolder\\virtual_coin\\binance\\market_depth\\";
 				}
 				String fileName = fileNamePrefix + "_" + System.currentTimeMillis();
 				// 默认设置
@@ -391,20 +385,21 @@ public class HttpClientRequestHandler {
 				// 返回文本类型
 				fileName += ".txt";
 				responseRet.setRetContent(responseBody);
-				System.out.println("fileName = "+fileDirPath + fileName);
+				//System.out.println("fileName = "+fileDirPath + fileName);
 				File file = new File(fileDirPath + fileName);
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+				//BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 				EntityUtils.consume(entity);
-				bos.write(responseBody);
-				bos.flush();
-				bos.close();
+				FileUtils.writeByteArrayToFile(file, responseBody, true);
+				//bos.write(responseBody);
+				//bos.flush();
+				//bos.close();
 				requestHandler.getResonseRetMap().put(fileNamePrefix, responseRet);
 			} else {
 				System.out.println("entity is null");
 			}
 
 		} catch (ClientProtocolException e) {
-            System.out.println("requst method = "+requestHandler.getRequestMethod().getMethod());
+            //System.out.println("requst method = "+requestHandler.getRequestMethod().getMethod());
 			e.printStackTrace();
 		} catch (IOException e) {
 
@@ -457,7 +452,7 @@ public class HttpClientRequestHandler {
 				// 存储到硬盘
 				// 将entity保持到内存中rushToPurchasePage
 				byte[] responseBody = EntityUtils.toByteArray(entity);
-				String filePath = "F:/testFolder/virtual_coin/market_ticker/";
+				String filePath = "D:/testFolder/virtual_coin/market_ticker/";
 				String fileName = fileNamePrefix + "_" + System.currentTimeMillis();
 				// 默认设置
 				responseRet.setRetType(ResponseType.JSON);
@@ -466,17 +461,17 @@ public class HttpClientRequestHandler {
 				// 返回文本类型
 				fileName += ".txt";
 				responseRet.setRetContent(responseBody);
-				System.out.println("fileName = "+filePath + fileName);
+				//System.out.println("fileName = "+filePath + fileName);
 				File file = null;
-				BufferedOutputStream bos = null;
+				//BufferedOutputStream bos = null;
 				if(DEBUG) {
 				      file = new File(filePath + fileName);
-				      bos = new BufferedOutputStream(new FileOutputStream(file));
+				     // bos = new BufferedOutputStream(new FileOutputStream(file));
 				      EntityUtils.consume(entity);
-						
-						bos.write(responseBody);
-						bos.flush();
-						bos.close();
+				      FileUtils.writeByteArrayToFile(file, responseBody, true);
+						//bos.write(responseBody);
+						//bos.flush();
+						//bos.close();
 				}
 				
 			
@@ -486,7 +481,7 @@ public class HttpClientRequestHandler {
 			}
 
 		} catch (ClientProtocolException e) {
-            System.out.println();
+            //System.out.println();
 			e.printStackTrace();
 		} catch (IOException e) {
 
@@ -583,11 +578,12 @@ public class HttpClientRequestHandler {
 				}
 				responseRet.setRetContent(responseBody);
 				File file = new File(filePath + fileName);
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+				//BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 				EntityUtils.consume(entity);
-				bos.write(responseBody);
-				bos.flush();
-				bos.close();
+				FileUtils.writeByteArrayToFile(file, responseBody, true);
+				//bos.write(responseBody);
+				//bos.flush();
+				//bos.close();
 				requestHandler.getResonseRetMap().put(fileNamePrefix, responseRet);
 			} else {
 				System.out.println("entity is null");
@@ -708,11 +704,11 @@ public class HttpClientRequestHandler {
 			}
 		} catch (ClientProtocolException e) {
 			//log.error("ClientProtocolException");
-			System.out.println("ClientProtocolException");
+			//System.out.println("ClientProtocolException");
 			e.printStackTrace();
 		} catch (IOException e) {
 			//log.error("IOException");
-			System.out.println("IOException");
+			//System.out.println("IOException");
 			e.printStackTrace();
 		}finally {
 			// 关闭response
@@ -796,11 +792,12 @@ public class HttpClientRequestHandler {
 				}
 				responseRet.setRetContent(responseBody);
 				File file = new File(filePath + fileName);
-				BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
+				//BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(file));
 				EntityUtils.consume(entity);
-				bos.write(responseBody);
-				bos.flush();
-				bos.close();
+				FileUtils.writeByteArrayToFile(file, responseBody, true);
+				//bos.write(responseBody);
+				//bos.flush();
+				//bos.close();
 			}catch(IOException e){
 				e.printStackTrace();
 			}
@@ -816,14 +813,14 @@ public class HttpClientRequestHandler {
 		// 输出请求方法的Url
 		String requestUrl = requestMethod.getURI().toString();
 		//System.out.println("输出requset的Headers和Cookies---" + "requestUrl = " + requestUrl);
-		log.info("输出requset的Headers和Cookies---" + "requestUrl = " + requestUrl);
+		//log.info("输出requset的Headers和Cookies---" + "requestUrl = " + requestUrl);
 		// 输出请求方法中的Headers
 		Header[] headers = requestMethod.getAllHeaders();
 		if (null != headers) {
 			for (int index = 0; index < headers.length; index++) {
-				System.out.println("requestHeaders[" + index + "].name = " + headers[index].getName()
-						+ "--------requestHeaders[" + index + "].value = " + headers[index].getValue());
-				
+//				System.out.println("requestHeaders[" + index + "].name = " + headers[index].getName()
+//						+ "--------requestHeaders[" + index + "].value = " + headers[index].getValue());
+//				
 				/*log.info("requestHeaders[" + index + "].name = " + headers[index].getName()
 						+ "--------requestHeaders[" + index + "].value = " + headers[index].getValue());*/
 			}
@@ -845,12 +842,12 @@ public class HttpClientRequestHandler {
 		// 输出请求方法的Url
 		String requestUrl = requestMethod.getURI().toString();
 		//System.out.println("输出response的Headers和Cookies----" + "requestUrl = " + requestUrl);
-		log.info("输出response的Headers和Cookies----" + "requestUrl = " + requestUrl);
+		//log.info("输出response的Headers和Cookies----" + "requestUrl = " + requestUrl);
 		// 请求返回状态
 		StatusLine statusLine = response.getStatusLine();
 		responseRet.setStautsLine(statusLine);
 		//statusLine.get
-		System.out.println("statusLine = " + statusLine);
+		//System.out.println("statusLine = " + statusLine);
 		// 输出请求方法中的Headers
 		Header[] headers = response.getAllHeaders();
 		if (null != headers) {
@@ -859,8 +856,8 @@ public class HttpClientRequestHandler {
 				/*System.out.println("responseHeaders[" + index + "].name = " + headers[index].getName()
 						+ "--------responseHeaders[" + index + "].value = " + headers[index].getValue());*/
 				
-				log.info("responseHeaders[" + index + "].name = " + headers[index].getName()
-						+ "--------responseHeaders[" + index + "].value = " + headers[index].getValue());
+//				log.info("responseHeaders[" + index + "].name = " + headers[index].getName()
+//						+ "--------responseHeaders[" + index + "].value = " + headers[index].getValue());
 			}
 		}
 		// 输出Cookies
@@ -878,8 +875,8 @@ public class HttpClientRequestHandler {
 			 * cookieList.get(index).getName() + "-----cookieList[" + index + "].value = " +
 			 * cookieList.get(index).getValue());
 			 */
-			System.out.println("第" + index + "个Cookie:" + cookieList.get(index).toString());
-			log.info("第" + index + "个Cookie:" + cookieList.get(index).toString());
+			//System.out.println("第" + index + "个Cookie:" + cookieList.get(index).toString());
+//			log.info("第" + index + "个Cookie:" + cookieList.get(index).toString());
 		}
 	}
 	/**
@@ -897,7 +894,7 @@ public class HttpClientRequestHandler {
 			 * cookieList.get(index).getValue());
 			 */
 			//System.out.println("第" + index + "个Cookie:" + cookieList.get(index).toString());
-			log.info("第" + index + "个Cookie:" + cookieList.get(index).toString());
+//			log.info("第" + index + "个Cookie:" + cookieList.get(index).toString());
 			
 		}
 		responseRet.setCookieList(cookieList);

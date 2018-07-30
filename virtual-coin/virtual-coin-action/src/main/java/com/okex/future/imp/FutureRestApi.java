@@ -31,7 +31,7 @@ public class FutureRestApi implements IFutureRestApi {
 
 	private HttpClientRequestHandler requestHandler;
 
-	private final String fileDirPath = "F:/testFolder/virtual_coin/okex/future/";
+	private final String fileDirPath = "D:/testFolder/virtual_coin/okex/future/";
 
 	/**
 	 * 期货行情URL
@@ -117,12 +117,12 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_TICKER_URL).append("?").append("symbol=")
 				.append(symbol).append("&contract_type=").append(contractType);
 		String url = new String(sb);
-		System.out.println("future_ticker,url = " + url);
+//		System.out.println("future_ticker,url = " + url);
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "future_ticker");
 
-		System.out.println("future_ticker,responseString = " + responseString);
+//		System.out.println("future_ticker,responseString = " + responseString);
 		return responseString;
 
 	}
@@ -133,12 +133,12 @@ public class FutureRestApi implements IFutureRestApi {
 				.append(symbol);
 
 		String url = new String(sb);
-		System.out.println("future_index,url = " + url);
+//		System.out.println("future_index,url = " + url);
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "future_index");
 
-		System.out.println("future_index,responseString = " + responseString);
+//		System.out.println("future_index,responseString = " + responseString);
 		return responseString;
 	}
 	@Override
@@ -168,12 +168,12 @@ public class FutureRestApi implements IFutureRestApi {
 				               .append(since);
 		                       
 		String url = new String(sb);
-		System.out.println("future_kline,url = " + url);
+//		System.out.println("future_kline,url = " + url);
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "future_kline_"+symbol);
 
-		System.out.println("future_kline,responseString = " + responseString);
+//		System.out.println("future_kline,responseString = " + responseString);
 		return responseString;
 	}
 	@Override
@@ -181,12 +181,12 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_TRADES_URL).append("?").append("symbol=")
 				.append(symbol).append("&contract_type=").append(contractType);
 		String url = new String(sb);
-		System.out.println("future_trades,url = " + url);
+//		System.out.println("future_trades,url = " + url);
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "future_trades");
 
-		System.out.println("future_trades,responseString = " + responseString);
+//		System.out.println("future_trades,responseString = " + responseString);
 		return responseString;
 	}
 
@@ -195,12 +195,12 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_DEPTH_URL).append("?").append("symbol=")
 				.append(symbol).append("&contract_type=").append(contractType);
 		String url = new String(sb);
-		System.out.println("future_depth,url = " + url);
+//		System.out.println("future_depth,url = " + url);
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "future_depth");
 
-		System.out.println("future_depth,responseString = " + responseString);
+//		System.out.println("future_depth,responseString = " + responseString);
 		return responseString;
 	}
 
@@ -212,7 +212,7 @@ public class FutureRestApi implements IFutureRestApi {
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, null,
 				null, fileDirPath, "exchange_rate");
 
-		System.out.println("exchange_rate,responseString = " + responseString);
+//		System.out.println("exchange_rate,responseString = " + responseString);
 		return responseString;
 	}
 
@@ -228,7 +228,7 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_TRADE_URL);
 
 		String url = new String(sb);
-		System.out.println("future_trade,url = " + url);
+//		System.out.println("future_trade,url = " + url);
 		// 构造参数签名
 		Map<String, String> params = new HashMap<String, String>();
 		if (!StringUtils.isEmpty(symbol )) {
@@ -257,7 +257,7 @@ public class FutureRestApi implements IFutureRestApi {
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "POST", url, null,
 				params, fileDirPath, "future_trade");
 
-		System.out.println("future_trade,responseString = " + responseString);
+//		System.out.println("future_trade,responseString = " + responseString);
 		return responseString;
 	}
 
@@ -267,7 +267,7 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_USERINFO_URL);
 
 		String url = new String(sb);
-		System.out.println("future_userinfo,url = " + url);
+//		System.out.println("future_userinfo,url = " + url);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("api_key", api_key);
@@ -277,7 +277,7 @@ public class FutureRestApi implements IFutureRestApi {
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "POST", url, null,
 				params, fileDirPath, "future_userinfo");
 
-		System.out.println("future_userinfo,responseString = " + responseString);
+//		System.out.println("future_userinfo,responseString = " + responseString);
 		return responseString;
 
 	}
@@ -287,7 +287,7 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_USERINFO_4FIX_URL);
 
 		String url = new String(sb);
-		System.out.println("future_userinfo,url = " + url);
+//		System.out.println("future_userinfo,url = " + url);
 
 		Map<String, String> params = new HashMap<String, String>();
 		params.put("api_key", api_key);
@@ -296,8 +296,8 @@ public class FutureRestApi implements IFutureRestApi {
 
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "POST", url, null,
 				params, fileDirPath, "future_userinfo");
-
-		System.out.println("future_userinfo,responseString = " + responseString);
+//
+//		System.out.println("future_userinfo,responseString = " + responseString);
 		return responseString;
 	}
 
@@ -319,7 +319,7 @@ public class FutureRestApi implements IFutureRestApi {
 		StringBuilder sb = new StringBuilder(url_prex).append(FUTURE_ORDER_INFO_URL);
 
 		String url = new String(sb);
-		System.out.println("future_order_info,url = " + url);
+//		System.out.println("future_order_info,url = " + url);
 		// 构造参数签名
 		Map<String, String> params = new HashMap<String, String>();
 		if (!StringUtils.isEmpty(contractType )) {
@@ -348,7 +348,7 @@ public class FutureRestApi implements IFutureRestApi {
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "POST", url, null,
 				params, fileDirPath, "future_order_info");
 
-		System.out.println("future_order_info,responseString = " + responseString);
+//		System.out.println("future_order_info,responseString = " + responseString);
 		return responseString;
 	}
 

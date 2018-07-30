@@ -175,7 +175,7 @@ public class PlatformActionExecute {
 					List<KLine> klineList = mKLineInfo.getKlineList();
 				   for(int index=0;index<klineList.size();index++) {
 					   KLine kline = klineList.get(index);
-					   System.out.println("index = "+index+"---date:"+kline.getFormatDate()+"---closePrice = "+kline.getClosePrice());
+					  // System.out.println("index = "+index+"---date:"+kline.getFormatDate()+"---closePrice = "+kline.getClosePrice());
 				   }
 				}else {
 					System.out.println("get mKLineInfo is null");

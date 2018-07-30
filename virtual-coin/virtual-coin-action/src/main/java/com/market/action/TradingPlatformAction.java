@@ -86,7 +86,7 @@ public class TradingPlatformAction {
 				+ "WHERE a.name = '" + tp.getName() + "' " + "AND a.id = b.tradingPlatformId ";
 		List<Map<String, Object>> listMap = this.tradingPlatformService.findListMapByHql2(hql);
 		if (null == listMap || 0 == listMap.size()) {
-			System.out.println("get list map is null");
+			//System.out.println("get list map is null");
 			return null;
 		}
 		List<String> symbolList = new ArrayList<String>();
@@ -126,7 +126,7 @@ public class TradingPlatformAction {
 		// 请求
 		// String url = tp.getFetchAllSymbolUrl();
 		String url = tp.getFetchAllTickerUrl();
-		System.out.println("url = " + url);
+		//System.out.println("url = " + url);
 
 		RequestBuilder requestBuilder = RequestBuilder.get().setUri(url);
 		// 设置访问的Header
@@ -148,7 +148,7 @@ public class TradingPlatformAction {
 		if (null == responseString) {
 			return;
 		}
-		System.out.println("responseString = " + responseString);
+		//System.out.println("responseString = " + responseString);
 		parseInfoAndSave(responseString, tp);
 	}
 
@@ -171,7 +171,7 @@ public class TradingPlatformAction {
 		// 请求
 		// String url = tp.getFetchAllSymbolUrl();
 		String url = tp.getFetchAllTickerUrl();
-		System.out.println("url = " + url);
+		//System.out.println("url = " + url);
 
 		RequestBuilder requestBuilder = RequestBuilder.get().setUri(url);
 		// 设置访问的Header
@@ -193,7 +193,7 @@ public class TradingPlatformAction {
 		if (null == responseString) {
 			return;
 		}
-		System.out.println("responseString = " + responseString);
+		//System.out.println("responseString = " + responseString);
 		parseInfoAndSave(responseString, tp);
 	}
 
@@ -280,14 +280,14 @@ public class TradingPlatformAction {
 			}
 			if (DEBUG) {
 
-				System.out.println("-----------------index = " + index + "------------------");
-				System.out.println("serverDate = " + serverDate);
+				//System.out.println("-----------------index = " + index + "------------------");
+				//System.out.println("serverDate = " + serverDate);
 			}
 			String value = "";
 			if (null != symbol && null != (value = symbol.get(index))) {
 				ptr.setSymbol(value);
 				if (DEBUG) {
-					System.out.println("symbol = " + value + "---translate value = " + ptr.getSymbol());
+					//System.out.println("symbol = " + value + "---translate value = " + ptr.getSymbol());
 				}
 			}
 			if (null != openPrice && null != (value = (openPrice.get(index).replace("\"", "")))) {
@@ -305,37 +305,37 @@ public class TradingPlatformAction {
 			if (null != lowPrice && null != (value = (lowPrice.get(index)).replace("\"", ""))) {
 				ptr.setLowPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("lowPrice = " + value + "---translate value = " + ptr.getLowPrice());
+					//System.out.println("lowPrice = " + value + "---translate value = " + ptr.getLowPrice());
 				}
 			}
 			if (null != lastPrice && null != (value = (lastPrice.get(index).replace("\"", "")))) {
 				ptr.setLastPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("lastPrice = " + value + "---translate value = " + ptr.getLastPrice());
+					//System.out.println("lastPrice = " + value + "---translate value = " + ptr.getLastPrice());
 				}
 			}
 			if (null != bidPrice && null != (value = (bidPrice.get(index).replace("\"", "")))) {
 				ptr.setBidPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("bidPrice = " + value + "---translate value = " + ptr.getBidPrice());
+					//System.out.println("bidPrice = " + value + "---translate value = " + ptr.getBidPrice());
 				}
 			}
 			if (null != bidCount && null != (value = (bidCount.get(index).replace("\"", "")))) {
 				ptr.setBidCount(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("bidCount = " + value + "---translate value = " + ptr.getBidCount());
+					//System.out.println("bidCount = " + value + "---translate value = " + ptr.getBidCount());
 				}
 			}
 			if (null != askPrice && null != (value = (askPrice.get(index).replace("\"", "")))) {
 				ptr.setAskPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("askPrice = " + value + "---translate value = " + ptr.getAskPrice());
+					//System.out.println("askPrice = " + value + "---translate value = " + ptr.getAskPrice());
 				}
 			}
 			if (null != askCount && null != (value = (askCount.get(index).replace("\"", "")))) {
 				ptr.setAskCount(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("askCount = " + value + "---translate value = " + ptr.getAskCount());
+					//System.out.println("askCount = " + value + "---translate value = " + ptr.getAskCount());
 				}
 			}
 			if (null != ptr.getServerDate()) {
@@ -410,7 +410,7 @@ public class TradingPlatformAction {
 			String tradingAsset, TradingPlatform tp, boolean enforcingSingle) {
 
 		if (null == requestHandler || null == tp || (enforcingSingle && null == tradingAsset)) {
-			System.out.println("fetchTickerInfoAndParse----param error");
+			//System.out.println("fetchTickerInfoAndParse----param error");
 			return null;
 		}
 		String responseString = getTickersInfo(requestHandler, tp, tradingAsset, enforcingSingle);
@@ -432,7 +432,7 @@ public class TradingPlatformAction {
 	 */
 	public String fetchKLineInfo(final HttpClientRequestHandler requestHandler,TradingPlatform tradingPlatform,Map<String,String> paramMap) {
 		if (null == requestHandler || null == tradingPlatform || null == paramMap || 0 == paramMap.size()) {
-			System.out.println("param is null");
+			//System.out.println("param is null");
 			return null;
 		}
 		StringBuilder sb = new StringBuilder(tradingPlatform.getFetchKLineUrl())
@@ -446,7 +446,7 @@ public class TradingPlatformAction {
 				               .append(paramMap.get("typeValue"));
 		String url = new String(sb);
 		
-		System.out.println("url = "+url);		
+		//System.out.println("url = "+url);		
 		String responseString = GeneralHttpClientRequestManager.httpClientRequest(requestHandler, "GET", url, tp.getName()+"_"+paramMap.get("symbolValue")+"_kline");
 		return responseString;
 		
@@ -463,7 +463,7 @@ public class TradingPlatformAction {
 	 */
 	public MarketKLineInfo parseKLineInfoString(String responseString,IKLineParser klineParser) {
 		if(null==responseString || null==klineParser) {
-			System.out.println("parseKLineInfoString---param is null");
+			//System.out.println("parseKLineInfoString---param is null");
 			return null;
 		}
 		return klineParser.parserKLine(responseString);
@@ -497,11 +497,11 @@ public class TradingPlatformAction {
 	public String getTickersInfo(final HttpClientRequestHandler requestHandler, TradingPlatform tp, String tradingAsset,
 			boolean enforcingSingle) {
 		if (null == requestHandler || null == tp || (enforcingSingle && null == tradingAsset)) {
-			System.out.println("getTickersInfo----param error");
+			//System.out.println("getTickersInfo----param error");
 			return null;
 		}
 		String url = generateFetchTickerUlr(tp, tradingAsset, enforcingSingle);
-		System.out.println("url = " + url);
+		//System.out.println("url = " + url);
 
 		RequestBuilder requestBuilder = RequestBuilder.get().setUri(url);
 		// 设置访问的Header
@@ -526,7 +526,7 @@ public class TradingPlatformAction {
 		if (null == responseString) {
 			return null;
 		}
-		System.out.println("responseString = " + responseString);
+		//System.out.println("responseString = " + responseString);
 		return responseString;
 	}
 
@@ -563,7 +563,7 @@ public class TradingPlatformAction {
 		default:
 			break;
 		}
-		System.out.println("fetchTickerUrl = " + fetchTickerUrl);
+		//System.out.println("fetchTickerUrl = " + fetchTickerUrl);
 		return fetchTickerUrl;
 	}
 
@@ -682,8 +682,8 @@ public class TradingPlatformAction {
 			}
 			// mti.setServerDate(new Date(Long.parseLong(serverDate)*1000));
 			if (DEBUG) {
-				System.out.println("-----------------index = " + index + "------------------");
-				System.out.println("serverDate = " + serverDate);
+				//System.out.println("-----------------index = " + index + "------------------");
+				//System.out.println("serverDate = " + serverDate);
 			}
 			String value = "";
 			// tradingAsset
@@ -699,55 +699,55 @@ public class TradingPlatformAction {
 				}
 			} else {
 				
-				System.out.println("tp.getFetchTickerType() = "+tp.getFetchTickerType()+"----set tradingAsset = "+tradingAsset);
+				//System.out.println("tp.getFetchTickerType() = "+tp.getFetchTickerType()+"----set tradingAsset = "+tradingAsset);
 				mti.setTradingAssetPairName(tradingAsset);
 			}
 			if (null != openPrice && null != (value = (openPrice.get(index)).replace("\"", ""))) {
 				mti.setOpenPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("openPrice = " + value + "---translate value = " + mti.getOpenPrice());
+					//System.out.println("openPrice = " + value + "---translate value = " + mti.getOpenPrice());
 				}
 			}
 			if (null != highPrice && null != (value = (highPrice.get(index)).replace("\"", ""))) {
 				mti.setHighPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("highPrice = " + value + "---translate value = " + mti.getHighPrice());
+					//System.out.println("highPrice = " + value + "---translate value = " + mti.getHighPrice());
 				}
 			}
 			if (null != lowPrice && null != (value = (lowPrice.get(index)).replace("\"", ""))) {
 				mti.setLowPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("lowPrice = " + value + "---translate value = " + mti.getLowPrice());
+					//System.out.println("lowPrice = " + value + "---translate value = " + mti.getLowPrice());
 				}
 			}
 			if (null != lastPrice && null != (value = (lastPrice.get(index)).replace("\"", ""))) {
 				mti.setLastPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("lastPrice = " + value + "---translate value = " + mti.getLastPrice());
+					//System.out.println("lastPrice = " + value + "---translate value = " + mti.getLastPrice());
 				}
 			}
 			if (null != bidPrice && null != (value = (bidPrice.get(index)).replace("\"", ""))) {
 				mti.setBidPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("bidPrice = " + value + "---translate value = " + mti.getBidPrice());
+					//System.out.println("bidPrice = " + value + "---translate value = " + mti.getBidPrice());
 				}
 			}
 			if (null != bidCount && null != (value = (bidCount.get(index)).replace("\"", ""))) {
 				mti.setBidCount(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("bidCount = " + value + "---translate value = " + mti.getBidCount());
+					//System.out.println("bidCount = " + value + "---translate value = " + mti.getBidCount());
 				}
 			}
 			if (null != askPrice && null != (value = (askPrice.get(index)).replace("\"", ""))) {
 				mti.setAskPrice(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("askPrice = " + value + "---translate value = " + mti.getAskPrice());
+					//System.out.println("askPrice = " + value + "---translate value = " + mti.getAskPrice());
 				}
 			}
 			if (null != askCount && null != (value = (askCount.get(index)).replace("\"", ""))) {
 				mti.setAskCount(Double.valueOf(value));
 				if (DEBUG) {
-					System.out.println("askCount = " + value + "---translate value = " + mti.getAskCount());
+					//System.out.println("askCount = " + value + "---translate value = " + mti.getAskCount());
 				}
 			}
 
@@ -764,8 +764,8 @@ public class TradingPlatformAction {
 				Map.Entry<String, MarketTickerInfo> entry = iterator.next();
 				String key = entry.getKey();
 				MarketTickerInfo mti = entry.getValue();
-				System.out.println("key = " + key + "---mti.askPrice = " + mti.getAskPrice() + "---mti.bidPrice = "
-						+ mti.getBidPrice());
+//				System.out.println("key = " + key + "---mti.askPrice = " + mti.getAskPrice() + "---mti.bidPrice = "
+//						+ mti.getBidPrice());
 			}
 		}
 		return mtiMap;

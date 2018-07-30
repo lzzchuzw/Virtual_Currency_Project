@@ -5,11 +5,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class MapUtils {
-	public static Log log = LogFactory.getLog(MapUtils.class.getClass());
+	public static Logger log = LoggerFactory.getLogger(MapUtils.class.getClass());
 	
 	/**
 	 * 通用的遍历Map并输出Key和value
@@ -23,8 +23,8 @@ public class MapUtils {
 	    	if(null!=entry) {
 	    		String key = entry.getKey();
 	    		String value = String.valueOf(entry.getValue());
-	    		System.out.println("key = "+key+"---value = "+value);
-	    		log.info("key = "+key+"---value = "+value);
+	    		//System.out.println("key = "+key+"---value = "+value);
+	    		//log.info("key = "+key+"---value = "+value);
 	    	}
 	    }
 	}
@@ -40,8 +40,8 @@ public class MapUtils {
 	    	if(null!=entry) {
 	    		String key = String.valueOf(entry.getKey());
 	    		String value = String.valueOf(entry.getValue());
-	    		System.out.println("key = "+key+"---value = "+value);
-	    		log.info("key = "+key+"---value = "+value);
+	    		//System.out.println("key = "+key+"---value = "+value);
+	    		//log.info("key = "+key+"---value = "+value);
 	    	}
 	    }
 	}
@@ -60,8 +60,8 @@ public class MapUtils {
 	    	if(null!=entry) {
 	    		String key = String.valueOf(entry.getKey());
 	    		String value = String.valueOf(entry.getValue());
-	    		System.out.println("key = "+key+"---value = "+value);
-	    		log.info("key = "+key+"---value = "+value);
+	    		//System.out.println("key = "+key+"---value = "+value);
+	    		//log.info("key = "+key+"---value = "+value);
 	    	}
 	    }
 	}
@@ -84,7 +84,7 @@ public class MapUtils {
 		    				if(null!=oValue) {
 		    					value = String.valueOf(oValue); 
 		    				}
-		    				System.out.println("key = "+key+"---value = "+value);
+		    				//System.out.println("key = "+key+"---value = "+value);
 		    			}
 		    		}
 		    	}
@@ -118,7 +118,7 @@ public class MapUtils {
 	    	if(null!=entry) {
 	    		String key = entry.getKey();
 	    		String value = String.valueOf(entry.getValue());
-	    		System.out.println("key = "+key+"---value = "+value);
+	    		//System.out.println("key = "+key+"---value = "+value);
 	    		//key的第一个字母大写
 	    		key = prefix+"_"+key;
 	    		retMap.put(key, value);

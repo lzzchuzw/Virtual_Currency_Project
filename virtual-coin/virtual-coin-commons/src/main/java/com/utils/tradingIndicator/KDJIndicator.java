@@ -70,7 +70,7 @@ public class KDJIndicator {
 			System.out.println("calculateRSV -- param is error");
 			return null;
 		}
-		System.out.println("calculateRSV---klineList.size = "+klineList.size()+"--period = "+period);
+		//System.out.println("calculateRSV---klineList.size = "+klineList.size()+"--period = "+period);
 		//period周期内的最低价
 		Double low = klineList.get(0).getLowPrice();
 		//period周期内的最高价
@@ -82,7 +82,7 @@ public class KDJIndicator {
 		if(count<period) {
 			period = count ;
 		}
-		System.out.println("count = "+count+"---period = "+period);
+		//System.out.println("count = "+count+"---period = "+period);
 		for(int i=1;i<period;i++) {
 			KLine kline  = klineList.get(i);
 			if(null==kline) {
@@ -97,11 +97,11 @@ public class KDJIndicator {
 		}
 		
 		KLine kline  = klineList.get(count-1);
-		System.out.println("time = "+kline.getFormatDate()+"---closePrice = "+kline.getClosePrice());
+		//System.out.println("time = "+kline.getFormatDate()+"---closePrice = "+kline.getClosePrice());
 		
 		RSV = (klineList.get(count-1).getClosePrice()-low)/(high-low)*100;
 		
-		System.out.println("low = "+low+"---high = "+high+"---RSV = "+RSV);
+		//System.out.println("low = "+low+"---high = "+high+"---RSV = "+RSV);
 		return RSV;
 	}
 	

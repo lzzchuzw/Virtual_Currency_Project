@@ -67,9 +67,9 @@ public class PlatformBaseDataCollectAction {
 	public static final String GET_CURRENCY_URL_PREFIX = "https://www.feixiaohao.com/currencies/list_";
 	public static final String GET_TOKEN_URL_PREFIX = "https://www.feixiaohao.com/assets/list_";
 	public static final String GET_PLATFORM_URL_PREFIX = "https://www.feixiaohao.com/exchange/list_";
-	public static final String SERIALIZABLE_OLD_TRADING_PLATFORM_INFO_PATH = "F:/testFolder/serializable/otplist.txt";
-	public static final String SERIALIZABLE_NEW_TRADING_PLATFORM_INFO_PATH = "F:/testFolder/serializable/ntplist.txt";
-	public static final String SERIALIZABLE_PLATFORM_SYMBOL_RELEVANCE_INFO_PATH = "F:/testFolder/serializable/psrlist.txt";//PlatformSymbolRelevance
+	public static final String SERIALIZABLE_OLD_TRADING_PLATFORM_INFO_PATH = "D:/testFolder/serializable/otplist.txt";
+	public static final String SERIALIZABLE_NEW_TRADING_PLATFORM_INFO_PATH = "D:/testFolder/serializable/ntplist.txt";
+	public static final String SERIALIZABLE_PLATFORM_SYMBOL_RELEVANCE_INFO_PATH = "D:/testFolder/serializable/psrlist.txt";//PlatformSymbolRelevance
 	public static final String GET_PLATFORM_SYMBOL_RELEVANCE_PREFIX = BASIC_URL+"/exchange/";
 	public static final String COMMON_COIN_REGEX = "";
 	public static final String EXTRACT_ALL_CURRENCY_REGEX = "\\[(.*?)\\]";
@@ -242,7 +242,7 @@ public class PlatformBaseDataCollectAction {
 	 */
 	public String serializeblePlatformDBData() {
 		List<TradingPlatform> tpList = this.tradingPlatformService.findObjects(" where 1 = 1");
-		String filePath = "F:/testFolder/serializable/otplist.txt";
+		String filePath = "D:/testFolder/serializable/otplist.txt";
 		File file = new File(filePath);
 		FileOutputStream fos = null;
 		try {
@@ -327,7 +327,7 @@ public class PlatformBaseDataCollectAction {
 	public void gainPlatformsAndSaveToDB() {
 		//读取数据库中存有的数据
 		//String filePath = serializeblePlatformDBData();
-		//String filePath = "F:/testFolder/serializable/otplist.txt";
+		//String filePath = "D:/testFolder/serializable/otplist.txt";
 		List<TradingPlatform> otpList = readListObjectFromSerializableTxt(SERIALIZABLE_OLD_TRADING_PLATFORM_INFO_PATH);
 		//从非小号 获取交易平台列表 并按照ranking字段排序
 		/*List<TradingPlatform> ntpList = gainTradingPlatformListAndSort();
@@ -388,7 +388,7 @@ public class PlatformBaseDataCollectAction {
 	public String saveNPlatformInfoSerializableFromDB2HD() {
 		List<TradingPlatform> ntpList =  tradingPlatformService.findObjects(null);
 		SerializableUtils<List<TradingPlatform>> tpsu = new SerializableUtils<List<TradingPlatform>>();
-		String filePath = tpsu.serializableObject2HardDisk(ntpList, "F:/testFolder/serializable/ntplist_2.txt");
+		String filePath = tpsu.serializableObject2HardDisk(ntpList, "D:/testFolder/serializable/ntplist_2.txt");
 		return filePath;
 	}
 	/**
@@ -401,7 +401,7 @@ public class PlatformBaseDataCollectAction {
 	public void savePlatformSymbolRelevance2DB() {
 		SerializableUtils<List<TradingPlatform>> tpsu = new SerializableUtils<List<TradingPlatform>>();
 		SerializableUtils<List<PlatformSymbolRelevance>> psrsu = new SerializableUtils<List<PlatformSymbolRelevance>>();
-		List<TradingPlatform> ntpList = tpsu.readObjectFromSerializableTxt("F:/testFolder/serializable/ntplist_2.txt");
+		List<TradingPlatform> ntpList = tpsu.readObjectFromSerializableTxt("D:/testFolder/serializable/ntplist_2.txt");
 		
 		Map<String,TradingPlatform> ntpmap = new HashMap<String,TradingPlatform>();
 		for(TradingPlatform tp:ntpList) {
@@ -469,7 +469,7 @@ public class PlatformBaseDataCollectAction {
 	public String savePlatformInfoSerializable() {
 		List<TradingPlatform> ntpList = gainTradingPlatformListAndSort();
 		SerializableUtils<List<TradingPlatform>> tpsu = new SerializableUtils<List<TradingPlatform>>();
-		String filePath = tpsu.serializableObject2HardDisk(ntpList, "F:/testFolder/serializable/ntplist.txt");
+		String filePath = tpsu.serializableObject2HardDisk(ntpList, "D:/testFolder/serializable/ntplist.txt");
 		return filePath;
 	}
 	/**
@@ -498,10 +498,10 @@ public class PlatformBaseDataCollectAction {
 	* @date 2018年6月12日上午11:03:04
 	 */
 	public String savePlatformSymbolRelevanceInfoSerializable() {
-		List<TradingPlatform> ntpList = readNTPListFromSerializableTxt("F:/testFolder/serializable/ntplist.txt");
+		List<TradingPlatform> ntpList = readNTPListFromSerializableTxt("D:/testFolder/serializable/ntplist.txt");
 		List<PlatformSymbolRelevance> platformSymbolRelevanceList = gainPlatformSymbolRelevance(ntpList);
 		SerializableUtils<List<PlatformSymbolRelevance>> psrsu = new SerializableUtils<List<PlatformSymbolRelevance>>();
-		String filePath = psrsu.serializableObject2HardDisk(platformSymbolRelevanceList, "F:/testFolder/serializable/psrlist.txt");
+		String filePath = psrsu.serializableObject2HardDisk(platformSymbolRelevanceList, "D:/testFolder/serializable/psrlist.txt");
 		return filePath;
 	}
 	/**

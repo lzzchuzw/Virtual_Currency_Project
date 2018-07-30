@@ -77,7 +77,7 @@ public class BollIndicator {
 		Double LOWER = 0.0;
 		Double MD = 0.0;
 		
-		System.out.println("初始化的index = "+index+"----maSum = "+maSum);
+		//System.out.println("初始化的index = "+index+"----maSum = "+maSum);
 		while(index<lenth) {
 			//加上当前项
 			maSum +=  klineList.get(index).getClosePrice();

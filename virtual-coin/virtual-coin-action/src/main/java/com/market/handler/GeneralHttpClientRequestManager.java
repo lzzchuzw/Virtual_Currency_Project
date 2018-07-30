@@ -139,12 +139,12 @@ public class GeneralHttpClientRequestManager {
 
 		// 设置访问的Header
 		if("GET".equals(methodType)) {
-			System.out.println("get method");
+			//System.out.println("get method");
 		   requestBuilder = RequestBuilder.get().setUri(url);
 		   HttpRequestHeaderGenerator.setGetMarketInfoeaders(requestBuilder, url);
 		   
 		}else {//POST method
-			System.out.println("post method");
+			//System.out.println("post method");
 			requestBuilder = RequestBuilder.post().setUri(url);
 			HttpRequestHeaderGenerator.setPostMarketInfoHeaders(requestBuilder, url);
 		}
